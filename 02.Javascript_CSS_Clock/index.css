@@ -1,0 +1,91 @@
+html {
+	background: url(http://unsplash.it/1500/1000?image=881&blur=50);
+	background-size: cover;
+	font-family: 'helvetica neue';
+	text-align: center;
+	font-size: 10px;
+}
+
+body {
+	font-size: 2rem;/* 20px */
+	display: flex;
+	min-height: 100vh;
+	align-items: center;
+}
+
+.clock {
+	width: 30rem;
+	height: 30rem;
+	border: 20px solid white;
+	border-radius: 50%;
+	margin: 0 auto;
+	position: relative;
+	padding: 2rem;
+	box-shadow: 0 0 0 4px rgba(0, 0, 0, .5), 
+				0 0 10px rgba(0, 0, 0, .5),
+				inset 0 0 0 4px #eee,
+				inset 0 0 0 8px white;/* 可添加多个阴影，用逗号隔开 */
+	background: rgba(0, 0, 0, .5);
+}
+
+.clock-face {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transform: translateY(-3px); /* 微调指针高度 */
+}
+
+.clock-face:after { /* 用after而不用before是因为可以置顶 */
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	position: absolute;
+	display: block;
+	left: 50%;
+	top: 50%;
+	content: '';
+	background: gray;
+	transform: translate(-50%, -50%); /* 自身长度的50% */
+	box-shadow: 0 0 20px black;
+}
+
+.hand {
+	width: 50%;
+	height: 10px;
+	background: #fff;
+	position: absolute;
+	top: 50%;
+	right: 50%;
+	transform-origin: 100% 50%; /* 指针右侧为轴 */
+	transform: rotate(90deg);
+	transition-timing-function: cubic-bezier(0.9, 0.54, 0.26, 1.68); /* 可用Chrome工具进行调试 */
+	border-bottom-left-radius: 10px;
+	border-top-left-radius: 10px; 
+	box-shadow: 2px 5px 1px rgba(0, 0, 0, .5);
+	/* transition: all .5s; */
+	/* margin-top: -5px; 让指针垂直居中*/
+}
+
+.hour-hand {
+	width: 30%;
+	height: 10px;
+	margin-top: -5px;
+	transition: all 1s;
+	background: white;
+}
+
+.min-hand {
+	width: 40%;
+	height: 5px;
+	margin-top: -2.5px;
+	transition: all .5s;
+	background: black;
+}
+
+.second-hand {
+	width: 50%;
+	height: 2px;
+	margin-top: -1px;
+	transition: all .05s;
+	background: red;
+}
