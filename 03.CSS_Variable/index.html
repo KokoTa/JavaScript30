@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS Variable</title>
+	<link rel="stylesheet" type="text/css" href="./index.css">
+</head>
+<body>
+	<h2>Update CSS Variables with <span class='hl'>JS</span></h2>
+
+	<div class="controls">
+		<label for="spacing">Spacing:</label>
+		<input type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+		<label for="blur">Blur:</label>
+		<input type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+		<label for="color">Base Color:</label>
+		<input type="color" name="color" value="#eeeeee">
+
+		<div class="result">
+			padding: <label id="code-spacing">10px</label>;<br>
+			filter: blur(<label id="code-blur">10px</label>);<br>
+			bacground: <label id="code-color">#eeeeee</label>;<br>
+		</div>
+	</div>
+
+	<img src="http://dl.bizhi.sogou.com/images/2014/04/21/587299.jpg">
+
+	<script type="text/javascript">
+		const getInputs = document.querySelectorAll('.controls input')
+		const inputs = Array.from(getInputs) // 将类数组转为数组，兼容浏览器
+
+		function update() {
+			const suffix = this.dataset.sizing || '' // 获得后缀
+			document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix) // 设置根元素变量值
+			document.getElementById(`code-${this.name}`).innerHTML = this.value + suffix// 页面参数显示
+		}
+
+		inputs.forEach((input) => input.addEventListener('change', update))
+		inputs.forEach((input) => input.addEventListener('mousemove', update))
+	</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+/* 根元素选择器，配合定义CSS变量 */
+:root {
+	--spacing: 20px;
+	--blur: 10px;
+	--color: #eeeeee;
+}
+
+body {
+	text-align: center;
+	background: #193549;
+	color: white;
+	font-family: 'helvetica neue', sans-serif;
+	font-weight: bolder;
+	font-size: 1.5rem;
+}
+
+img {
+	padding: var(--spacing);
+	background: var(--color);
+	-webkit-filter: blur(var(--blur));
+	width: 50%;
+}
+
+.hl {
+	color: var(--color);
+}
+
+.controls {
+	margin-bottom: 1rem;
+}
+
+input {
+	width: 100px;
+}
+
