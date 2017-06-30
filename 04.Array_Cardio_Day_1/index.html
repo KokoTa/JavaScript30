@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Array Cardio Day 1</title>
+</head>
+<body>
+	<h1>给定数组对象</h1>
+	<h2>任务：</h2>
+	<ul>
+		<li>筛选 16 世纪出生的人</li>
+		<li>展示上面发明家的姓名</li>
+		<li>把这些人从大到小进行排序</li>
+		<li>他们所有人一共活了多少岁</li>
+		<li>按照他们在世的岁数进行排序</li>
+		<li>按照姓氏的字母进行排序</li>
+		<li>统计各个物品的数量</li>
+	</ul>
+
+	<script type="text/javascript">
+		// data
+		const inventors = [
+			{ first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
+			{ first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
+			{ first: 'Galileo', last: 'Galilei', year: 1564, passed: 1642 },
+			{ first: 'Marie', last: 'Curie', year: 1867, passed: 1934 },
+			{ first: 'Johannes', last: 'Kepler', year: 1571, passed: 1630 },
+			{ first: 'Nicolaus', last: 'Copernicus', year: 1473, passed: 1543 },
+			{ first: 'Max', last: 'Planck', year: 1858, passed: 1947 },
+			{ first: 'Katherine', last: 'Blodgett', year: 1898, passed: 1979 },
+			{ first: 'Ada', last: 'Lovelace', year: 1815, passed: 1852 },
+			{ first: 'Sarah E.', last: 'Goode', year: 1855, passed: 1905 },
+			{ first: 'Lise', last: 'Meitner', year: 1878, passed: 1968 },
+			{ first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
+		];
+
+		// 1. 筛选出 16 世纪出生的人
+		// Array.prototype.filter()
+		const filter = inventors.filter((inventor) => {
+			if (inventor.year >= 1500 && inventor.year <= 1600) return true
+		})
+		console.table(filter)
+
+		// 2. 展示发明家的姓名
+		// Array.prototype.map()
+		const fullName = inventors.map((inventor) => {
+			return inventor.first + ' ' + inventor.last
+		})
+		console.log(fullName)
+
+		// 3. 将发明家按出生年从小到大排列
+		// Array.prototype.sort()
+		const sortYear = inventors.sort((a, b) => {
+			return a.year < b.year ? -1 : 1
+		})
+		console.table(sortYear)
+
+		// 4. 发明家们一共活了多少岁
+		// Array.prototype.reduce()
+		const totalYear = inventors.reduce((total, inventor) => {
+			return total + inventor.passed - inventor.year
+		}, 0)
+		console.log(totalYear)
+
+		// 5. 按活了多少年从小到大排列
+		const sortOlder = inventors.sort((a, b) => {
+			return (a.passed - a.year) < (b.passed - b.year) ? -1 : 1
+		})
+		console.table(sortOlder)
+
+		// 6.按姓氏进行排序
+		const sortName = inventors.sort((a, b) => {
+			return a.last < b.last ? -1 : 1
+		})
+		console.table(sortName)
+
+		// 7.统计各个物品的数量
+		const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ]
+		const reduce = data.reduce((obj, item) => {
+			if (!obj[item]) obj[item] = 0
+			obj[item]++
+			return obj
+		}, {})
+		console.log(reduce)
+	</script>
+</body>
+</html>
