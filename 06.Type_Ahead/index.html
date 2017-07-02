@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Type Ahead</title>
+	<link rel="stylesheet" type="text/css" href="./index.css">
+</head>
+<body>
+	<form class="search-form">
+		<input type="text" class="search" placeholder="City or State">
+		<ul class="suggestions">
+			<li>Filter for a city</li>
+			<li>or a state</li>
+		</ul>
+	</form>
+
+	<script type="text/javascript">
+		const search = document.querySelector('.search')
+		const suggestions = document.querySelector('.suggestions')
+		const url = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json'
+		const cities = []
+
+		// 获得数据
+		fetch(url)
+			.then((blob) => blob.json())
+			.then((data) => cities.push(...data))
+
+		// 查找结果
+		function findMatches(word, cities) {
+			return cities.filter((item) => {
+				const reg = new RegExp(word, 'gi')
+				return item.city.match(reg) || item.state.match(reg)
+			})
+		}
+
+		// 给人口数组加上逗号，eg: 444,444,4
+		function changeNumber(num) {
+			return num.match(/\d{3}|\d+/g).join(',')
+		}
+
+		// 显示结果
+		function displayMatches() {
+			// 箭头函数的this指向最外层
+			const matches = findMatches(this.value, cities)
+			const html = matches.map((item) => {
+				const regx = new RegExp(this.value, 'gi')
+				const cityName = item.city.replace(regx, `<span class='hl'>${this.value}</span>`)
+				const stateName = item.state.replace(regx, `<span class='hl'>${this.value}</span>`)
+				return `
+					<li>
+						<span class='name'>${cityName}, ${stateName}</span>
+						<span class='population'>${changeNumber(item.population)}</span>
+					</li>
+				`
+			}).join('')
+			suggestions.innerHTML = html
+		}
+
+		search.addEventListener('change', displayMatches)
+		search.addEventListener('keyup', displayMatches)
+	</script>
+</body>
+</html>
