@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Array Cardio Day 2</title>
+</head>
+<body>
+	<h1>F12+F5查看结果</h1>
+	<h2>任务：</h2>
+	<ul>
+		<li>是否有人超过 19 岁？</li>
+		<li>是否所有人都是成年人？</li>
+		<li>找到 ID 为 823423 的评论。</li>
+		<li>删除 ID 为 823423 的评论。</li>
+	</ul>
+
+	<script type="text/javascript">
+		// data
+		const people = [
+			{ name: 'Wes', year: 1988 },
+			{ name: 'Kait', year: 1986 },
+			{ name: 'Irv', year: 1970 },
+			{ name: 'Lux', year: 2015 }
+		];
+		const comments = [
+			{ text: 'Love this!', id: 523423 },
+			{ text: 'Super good', id: 823423 },
+			{ text: 'You are the best', id: 2039842 },
+			{ text: 'Ramen is my fav food ever', id: 123523 },
+			{ text: 'Nice Nice Nice!', id: 542328 }
+		];
+
+		// Array.prototype.some()
+		const isAdult = people.some((person) => {
+			const currentYear = new Date().getFullYear()
+			return currentYear - person.year >= 19
+		})
+		console.log('是否有人超过 19 岁？ 回答：'  + isAdult)
+
+		// Array.prototype.every()
+		const allAdult = people.every((person) => {
+			return new Date().getFullYear() - person.year >= 19
+		})
+		console.log('是否所有人都是成年人？ 回答：' + allAdult)
+
+		// Array.prototype.find()
+		const comment = comments.find((comment) => comment.id === 823423)
+		console.log('ID:823423 的评论是：' + comment.text)
+
+		// Array.prototype.findIndex()
+		const index = comments.findIndex((comment) => comment.id === 823423)
+		console.log('ID:823423 的索引是：' + index)
+
+		// 删除 ID:823423 的评论
+		// 方法一
+		// Array.prototype.splice()
+		// comments.splice(index, 1)
+		// 方法二
+		// Array.prototype.slice()
+		const newComment = [...comments.slice(0, index), ...comments.slice(index+1)]
+		console.table(newComment)
+	</script>
+</body>
+</html>
