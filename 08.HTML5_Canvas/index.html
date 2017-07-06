@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HTML5 Canvas</title>
+	<style type="text/css">
+		html, body {
+			margin: 0;
+			overflow: hidden;
+		}
+		#draw {
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="paint"></canvas>
+
+	<script type="text/javascript">
+		var paint = document.querySelector('#paint')
+		var ctx = paint.getContext('2d')
+
+		paint.width = window.innerWidth
+		paint.height = window.innerHeight
+
+		let isDrawing = false
+		let lastX = 0 // 起始点
+		let lastY = 0
+
+		ctx.lineWidth = 90 // 粗细
+		ctx.lineCap = 'round' // 笔头样式
+		ctx.lineJoin = 'round' // 线连接样式
+		ctx.strokeStyle = '#f00' // 线色 
+		ctx.fillStyle = '#f00' // 填充色
+
+		let hue = 0
+		let change = true
+		let x =0 // 目的点
+		let y = 0
+
+		function draw(e) {
+			if (!isDrawing) return
+
+			if (e.type === 'mousemove') { // 鼠标
+				x = e.offsetX
+				y = e.offsetY
+			} else { // 触摸
+				x = e.changedTouches[0].clientX
+				y = e.changedTouches[0].clientY
+			}
+
+			// 彩虹色
+			ctx.strokeStyle = `hsl(${hue}, 90%, 50%)`
+			if (hue >=360 ) hue = 0
+			hue ++
+
+			// 笔触大小
+			if (ctx.lineWidth > 120 || ctx.lineWidth < 10) {
+				change = !change
+			}
+			if (change) {
+				ctx.lineWidth++
+			} else {
+				ctx.lineWidth--
+			}
+
+			// 绘制
+			ctx.beginPath()
+			ctx.moveTo(lastX, lastY)
+			ctx.lineTo(x, y)
+			ctx.stroke()
+
+			// 更新起始点
+			lastX = x
+			lastY = y
+		}
+
+		// 鼠标事件
+		paint.addEventListener('mousedown', (e) => {
+			isDrawing = true
+			lastX = e.offsetX
+			lastY = e.offsetY
+			// [lastX, lastY] = [e.offsetX, e.offsetY] 解构赋值不了？ 让你不规范写代码， 代码都需要结尾写分号的！
+			console.log(lastX, lastY)
+		})
+		paint.addEventListener('mousemove', draw)
+		paint.addEventListener('mouseup', () => isDrawing = false)
+		paint.addEventListener('mouseout', () => isDrawing = false)
+
+		// 触摸事件
+		paint.addEventListener('touchstart', (e) => {
+			isDrawing = true
+			lastX = e.changedTouches[0].clientX
+			lastY = e.changedTouches[0].clientY
+			console.log(lastX, lastY)
+		})
+		paint.addEventListener('touchmove', draw)
+		paint.addEventListener('touchend', () => isDrawing = false)
+		paint.addEventListener('touchcancel', () => isDrawing = false)
+	</script>
+</body>
+</html>

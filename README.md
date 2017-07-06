@@ -13,3 +13,4 @@ Web Bos推出的30天纯JavaScript编程挑战
 - [x] [Flex Panel Gallery](https://kokota.github.io/JavaScript30/05.Flex_Panel_Gallery/index.html)
 - [x] [Type Ahead](https://kokota.github.io/JavaScript30/06.Type_Ahead/index.html)
 - [x] [Array Cardio Day 2](https://kokota.github.io/JavaScript30/07.Array_Cardio_Day_2/index.html)
+- [x] [HTML5 Canvas](https://kokota.github.io/JavaScript30/08.HTML5_Canvas/index.html)
