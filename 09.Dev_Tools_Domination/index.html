@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dev Tools Domination</title>
+</head>
+<body>
+	<h1>Console 调试技巧</h1>
+
+	<script type="text/javascript">
+		// data
+		const dogs = [{ name: 'Picka', age: 2}, { name: 'Kono', age: 4}]
+
+		// 设置断点后将跳转到此函数
+		const h1 = document.querySelector('h1')
+		h1.onclick = changeHead
+		function changeHead() {
+			h1.style.color = 'red'
+			h1.style.fontSize = '50px'
+		}
+
+		// 正常输出
+		console.log('我是正常输出的内容，啦啦啦！')
+
+		// 字符替换
+		console.log('我的名字是 %s', 'KokoTa')
+		console.log('我的年龄是 %d', 22)
+		console.log('我输出了一个浮点数 %f', 1.23)
+		console.log('我输出了一个对象 %o', { x: 1 })
+		console.log('%c 我给这句话设置了样式', 'color: green; font-size: 2em;')
+
+		// 警告、错误、信息
+		console.warn('warning')
+		console.error('error')
+		console.info('info')
+
+		// 打印元素
+		console.log(h1)
+		console.dir(h1)
+
+		// 断言
+		console.assert( 1 === 1, '我不会输出')
+		console.assert( 1 === 0, '我错了，我输出~')
+		console.assert( h1.innerHTML.match('x'), '我找不到相应字符')
+
+		// 组输出
+		dogs.forEach((dog) => {
+			console.group() // 展开列表
+			// console.groupCollapsed() // 收起列表
+			console.log(`${dog.name}`);
+			console.log(`${dog.age}`);
+			console.log(`${dog.name} 有 ${dog.age} 岁了`);
+			console.groupEnd();
+		}) 
+
+		// 计数
+		console.count('我是计数器A')
+		console.count('我是计数器B')
+		console.count('我是计数器A')
+		console.count('我是计数器A')
+		console.count('我是计数器A')
+		console.count('我是计数器B')
+
+		// 时间轴
+		console.time('fetch')
+		fetch('https://api.github.com/users/KokoTa')
+			.then(data => data.json())
+			.then(data => {
+				console.timeEnd('fetch')
+				console.table(data)
+			})
+	</script>
+</body>
+</html>
