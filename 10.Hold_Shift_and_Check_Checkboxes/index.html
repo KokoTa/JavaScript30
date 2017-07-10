@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hold Shift and Check Checkboxes</title>
+	<link rel="stylesheet" type="text/css" href="./index.css">
+</head>
+<body>
+	<div class="inbox">
+		<div class="item">
+			<input type="checkbox">
+			<p>这是一个邮件收件箱</p>
+		</div>
+		<div class="item">
+			<input type="checkbox">
+			<p>选中一项</p>
+		</div>
+		<div class="item">
+			<input type="checkbox">
+			<p>然后按住 Shift 键</p>
+		</div>
+		<div class="item">
+			<input type="checkbox">
+			<p>选择另外一项</p>
+		</div>
+		<div class="item">
+			<input type="checkbox">
+			<p>它们之间的都会被选中</p>
+		</div>
+		<div class="item">
+			<input type="checkbox">
+			<p>试着实现这个功能</p>
+		</div>
+		<div class="item">
+			<input type="checkbox">
+			<p>只用原生 JS </p>
+		</div>
+		<div class="item">
+			<input type="checkbox">
+			<p>Good Luck!</p>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		// 过程： 1.点击选中选项，设为A点  2.Shift+点击选中选项，设为B点  3.将两点之间的选项选中
+
+		const boxes = Array.from(document.querySelectorAll('.inbox input[type="checkbox"]'))
+		let A // A点到B点的那个A点, 把它当作一个锚点啦~
+		let flag = false // 是否选中
+
+		// 方法一
+		// 缺点明显， 1.第一次如果直接Shift+点击，则后面的所有选项都会选中； 2.不能反选。
+		function method1(e) {
+			if(!A) A = this
+			if(e.shiftKey) {
+				boxes.forEach((item) => { // 遍历整个数组
+					console.log(item)
+					console.log(item === this) // 知道为啥后面选项都能被选中吗？因为标签长得一样啊！
+					if(item === A || item === this) {
+						flag = !flag
+					}
+					if(flag) {
+						item.checked = true
+					}
+				})
+			}
+			A = this
+		}
+
+		// 方法二
+		// 筛选法， 可解决方法一的所有问题
+		function method2(e) {
+			if(!A) A = this
+			flag = A.checked ? true : false
+			if(e.shiftKey) {
+				let start = boxes.indexOf(A)
+				let end = boxes.indexOf(this)
+				boxes.slice(Math.min(start, end), Math.max(start + 1, end + 1))
+					.forEach((item) => item.checked = flag)
+			}
+			A = this
+		}
+
+		boxes.forEach((item) => item.addEventListener('click', method2))
+	</script>
+</body>
+</html>

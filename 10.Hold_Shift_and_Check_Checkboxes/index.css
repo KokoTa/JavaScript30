@@ -1,0 +1,45 @@
+html {
+	background: lightgreen;
+	font-family: '微软雅黑';
+	height: 100%;
+}
+body {
+	height: inherit;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.inbox {
+	max-width: 400px;
+	min-width: 200px;
+	background: white;
+	border-radius: 10px;
+	box-shadow: 0 0 10px black;
+}
+
+.item {
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid lightgrey;
+}
+.item:last-child {
+	border-bottom: 0;
+}
+
+input:checked + p {
+	background: lightgrey;
+	text-decoration: line-through;
+}
+input[type='checkbox'] { 
+	margin: 20px; /* 换成padding无效 */
+}
+
+p {
+	margin: 0;
+	padding: 20px;
+	transition: background .3s;
+	flex: 1;
+	font-weight: bolder;
+	border-left: 1px solid green;
+}
