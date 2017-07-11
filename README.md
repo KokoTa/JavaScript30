@@ -16,3 +16,4 @@ Web Bos推出的30天纯JavaScript编程挑战
 - [x] [HTML5 Canvas](https://kokota.github.io/JavaScript30/08.HTML5_Canvas/index.html)
 - [x] [Dev Tools Domination](https://kokota.github.io/JavaScript30/09.Dev_Tools_Domination/index.html)
 - [x] [Hold Shift and Check Checkboxes](https://kokota.github.io/JavaScript30/10.Hold_Shift_and_Check_Checkboxes/index.html)
+- [x] [Custom Video Player](https://kokota.github.io/JavaScript30/11.Custom_Video_Player/index.html)
