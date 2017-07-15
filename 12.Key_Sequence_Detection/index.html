@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Key Sequence Detection</title>
+</head>
+<body>
+	<h3>随意输入值，当输入KokoTa(注意大小写)时会弹出惊喜</h3>
+	<h4>请在Chrome下测试</h4>
+
+	<script type="text/javascript">
+		const input = []
+		const secret = 'KokoTa'
+		window.addEventListener('keypress', (e) => { // 用keyup/keydown，组合输入时(如shift+a)，将传入shift和A，而不是A
+			input.push(e.key) // 360极速居然没有e.key!
+			console.log(e.key)
+			if(input.slice(-secret.length).join('') === secret) {
+				alert('惊喜！\n真~弹出惊喜！')
+			}
+		})
+	</script>
+</body>
+</html>

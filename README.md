@@ -17,3 +17,4 @@ Web Bos推出的30天纯JavaScript编程挑战
 - [x] [Dev Tools Domination](https://kokota.github.io/JavaScript30/09.Dev_Tools_Domination/index.html)
 - [x] [Hold Shift and Check Checkboxes](https://kokota.github.io/JavaScript30/10.Hold_Shift_and_Check_Checkboxes/index.html)
 - [x] [Custom Video Player](https://kokota.github.io/JavaScript30/11.Custom_Video_Player/index.html)
+- [x] [Key Sequence Detection](https://kokota.github.io/JavaScript30/12.Key_Sequence_Detection/index.html)
