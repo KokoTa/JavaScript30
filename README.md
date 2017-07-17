@@ -19,3 +19,4 @@ Web Bos推出的30天纯JavaScript编程挑战
 - [x] [Custom Video Player](https://kokota.github.io/JavaScript30/11.Custom_Video_Player/index.html)
 - [x] [Key Sequence Detection](https://kokota.github.io/JavaScript30/12.Key_Sequence_Detection/index.html)
 - [x] [Slide in on Scroll](https://kokota.github.io/JavaScript30/13.Slide_In_On_Scroll/index.html)
+- [x] [Javascript References VS Copying](https://kokota.github.io/JavaScript30/14.Javascript_References_VS_Copying/index.html)
