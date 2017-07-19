@@ -21,3 +21,4 @@ Web Bos推出的30天纯JavaScript编程挑战
 - [x] [Slide in on Scroll](https://kokota.github.io/JavaScript30/13.Slide_In_On_Scroll/index.html)
 - [x] [Javascript References VS Copying](https://kokota.github.io/JavaScript30/14.Javascript_References_VS_Copying/index.html)
 - [x] [LocalStorage](https://kokota.github.io/JavaScript30/15.LocalStorage/index.html)
+- [x] [Mouse Move Shadow](https://kokota.github.io/JavaScript30/16.Mouse_Move_Shadow/index.html)
