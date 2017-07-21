@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sort Without Articles</title>
+	<link rel="stylesheet" type="text/css" href="./index.css">
+</head>
+<body>
+	<button class="rank">Rank Articles</button>
+	<ul class="list">
+		<li>点击排序(曲名前面的a/an/the不参与排序)</li>
+	</ul>
+
+	<script type="text/javascript">
+		const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+		const list = document.querySelector('.list')
+		const rank = document.querySelector('.rank')
+
+		list.innerHTML += bands.map((item) => `<li>${item}</li>`).join('')
+
+		function strip(str) {
+			return str.replace(/^(a |an |the )/i, '').trim()
+		}
+
+		rank.addEventListener('click', () => {
+			list.innerHTML = bands
+							.sort((a, b) => strip(a) > strip(b) ? 1: -1)
+							.map((item) => `<li>${item}</li>`)
+							.join('')
+		})
+
+	</script>
+</body>
+</html>
