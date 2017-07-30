@@ -1,0 +1,62 @@
+html {
+	box-sizing: border-box;
+	font-size: 10px;
+	background: green;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+.photobooth {
+	background: lightgreen;
+	max-width: 150rem;
+	margin: 0 auto;
+	border-radius: 20px;
+	position: relative;
+	padding: 20px;
+}
+
+.photo {
+	width: 100%;
+	border: 1px solid black;
+}
+
+.player {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	width: 200px;
+}
+.takePhoto {
+	border: none;
+	outline: none;
+	height: 100px;
+	width: 200px;
+	text-align: center;
+	font-size: 2rem;
+	margin: 10px;
+	cursor: pointer;
+}
+.takePhoto:active {
+	background: black;
+	color: white;
+}
+
+/* Strip 快照 */
+.strip {
+	padding: 2rem;
+}
+
+.strip img {
+	width: 150px;
+	overflow-x: scroll;
+	padding: 10px;
+	background: white;
+}
+
+.strip a:nth-child(5n+1) img { transform: rotate(10deg); }
+.strip a:nth-child(5n+2) img { transform: rotate(-2deg); }
+.strip a:nth-child(5n+3) img { transform: rotate(8deg); }
+.strip a:nth-child(5n+4) img { transform: rotate(-11deg); }
+.strip a:nth-child(5n+5) img { transform: rotate(12deg); }
