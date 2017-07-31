@@ -4,7 +4,7 @@ const strip = document.querySelector('.strip')
 const snap = document.querySelector('.snap')
 const ctx = canvas.getContext('2d')
 
-// 获得视频流并显示
+// 获得视频流并显示在Video中
 function getVideo() {
 	navigator.mediaDevices.getUserMedia({
 		video: true,
@@ -20,6 +20,7 @@ function getVideo() {
 	})
 }
 
+// 将Video打印到Canvas
 function printToCanvas() {
 	let width = video.videoWidth
 	let height = video.videoHeight
@@ -34,6 +35,7 @@ function printToCanvas() {
 	}, 16)
 }
 
+// 快照
 function takePhoto() {
 	// 播放音效
 	snap.currentTime = 0
@@ -47,6 +49,8 @@ function takePhoto() {
 	strip.insertBefore(link, strip.firstChild)
 }
 
+// 开始
 getVideo()
+
 // 当视频可以播放时执行函数
 video.addEventListener('canplay', printToCanvas)

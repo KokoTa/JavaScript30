@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Speech Detection</title>
+	<style type="text/css">
+		html {
+		  font-size: 10px;
+		}
+		body {
+		  background:#ffc600;
+		  font-family: 'helvetica neue';
+		  font-weight: 200;
+		  font-size: 20px;
+		}
+		.words {
+		  max-width:500px;
+		  margin:50px auto;
+		  background:white;
+		  border-radius:5px;
+		  box-shadow:10px 10px 0 rgba(0,0,0,0.1);
+		  padding:1rem 2rem 1rem 5rem;
+		  background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
+		  background-size: 100% 3rem;
+		  position: relative;
+		  line-height:3rem;
+		}
+		p {
+		  margin: 0 0 3rem 0;
+		}
+		.words:before {
+		  content: '';
+		  position: absolute;
+		  width: 4px;
+		  top: 0;
+		  left: 30px;
+		  bottom: 0;
+		  border: 1px solid;
+		  border-color: transparent #efe4e4;
+		}
+	</style>
+</head>
+<body>
+	<!-- contenteditable:是否可编辑元素的内容 -->
+	<div class="words" contenteditable="true"></div>
+
+	<script type="text/javascript">
+		// 根据浏览器之间的兼容性，需要同时添加浏览器前缀
+		window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+		const recognition = new SpeechRecognition()
+
+		// 控制在语音识别期间的结果是否返回，如开启了该属性，则会一直返回，直到SpeechRecognitionResult.isFinal是true时。即：当前这一段话说完了
+		recognition.interimResults = true
+
+		let words = document.querySelector('.words')
+
+		// 监听result事件，获取语音输入的文字
+		recognition.addEventListener('result', (e) => {
+			console.log(e)
+			let results = Array.from(e.results)
+				.map((result) => result[0])	
+				.map((result) => result.transcript)
+				.join('')
+
+			// 动态换掉某个词
+			const poopScript = results.replace(/good/gi, '*')
+
+			// 语音停顿，即输入结束时，新建P标签
+			if(e.results[0].isFinal) {
+				let p = document.createElement('p')
+				p.innerHTML = poopScript
+				words.appendChild(p)
+			}
+		})
+
+		// 监听end事件，输入结束后再次开始
+		recognition.addEventListener('end', recognition.start)
+
+		// 开始
+		recognition.start()
+	</script>
+</body>
+</html>
