@@ -28,3 +28,4 @@ Web Bos推出的30天纯JavaScript编程挑战
 - [x] [Speech Detection](https://kokota.github.io/JavaScript30/20.Speech_Detection/index.html)
 - [x] [Geolocation](https://kokota.github.io/JavaScript30/21.Geolocation/index.html)
 - [x] [Follow Along Link Highlighter](https://kokota.github.io/JavaScript30/22.Follow_Along_Link_Highlighter/index.html)
+- [x] [Speech Synthesis](https://kokota.github.io/JavaScript30/23.Speech_Synthesis/index.html)

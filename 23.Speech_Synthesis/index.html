@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Speech Synthesis</title>
+	<link rel="stylesheet" type="text/css" href="./index.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Speak Machine LOL</h1>
+		<select name="voice" id="voice">
+			<option value="">Select A Voice</option>
+		</select>
+
+		<label for="rate">Rate:</label>
+		<input type="range" name="rate" min="0" max="2	" value="1" step="0.1">
+		<label for="pitch">Pitch:</label>
+		<input type="range" name="pitch" min="0" max="2" value="1" step="0.1">
+
+		<textarea name="text">Hello!KokoTa here!</textarea>
+
+		<div class="sub">
+			<button id="stop">Stop</button>
+			<button id="speak">Speak</button>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		let voices = []
+		const voiceSelect = document.querySelector('#voice')
+		const options = document.querySelectorAll('[type="range"], [name="text"]')
+		const stopBtn = document.querySelector('#stop')
+		const speakBtn = document.querySelector('#speak')
+		// 实例化语音对象
+		const msg = new SpeechSynthesisUtterance()
+		msg.text = document.querySelector('[name="text"]').value
+
+		// 设置下拉选项
+		function populateVoices() {
+			voices = this.getVoices()
+			console.log(voices)
+			voiceSelect.innerHTML = voices
+				.filter((voice) => voice.lang.includes('zh'))
+				.map(voice => `<option value="${voice.name}">${voice.name} (${voice.lang})</option>`)
+				.join('')
+		}
+
+		// 设置当前语言
+		function setVoice() {
+			console.log(this.name, this.value)
+			msg.voice = voices.find((voice) => voice.name === this.value)
+			toggle()
+		}
+
+		// 设置语调语速和内容
+		function setOption() {
+			console.log(this.name, this.value)
+			msg[this.name] = this.value
+			toggle()
+		}
+		
+		// 播放和暂停
+		function toggle(start = true) { // 默认进行播放
+			console.log(msg)
+			speechSynthesis.cancel()
+			if(start) {
+				speechSynthesis.speak(msg)
+			}
+		}
+
+		// 支持的所有语言，页面初始化时调用
+		speechSynthesis.addEventListener('voiceschanged', populateVoices)
+		// 语言改变
+		voiceSelect.addEventListener('change', setVoice)
+		// 语调语速和内容改变
+		options.forEach(option => option.addEventListener('change', setOption))
+		// 播放和暂停
+		speakBtn.addEventListener('click', toggle)
+		stopBtn.addEventListener('click', () => toggle(false))
+	</script>
+</body>
+</html>
