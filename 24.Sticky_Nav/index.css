@@ -1,0 +1,95 @@
+html {
+	box-sizing: border-box;
+	background: #eee;
+	font-size: 20px;
+	font-weight: 200;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body {
+	margin: 0;
+}
+
+.site-wrap {
+	max-width: 700px;
+	margin: 70px auto;
+	background: white;
+	padding: 40px;
+	text-align: justify;
+	box-shadow: 0 0 10px 5px rgba(0, 0, 0, .5);
+	transition: transform .5s;
+	transform: scale(.98);
+}
+.fixed-nav .site-wrap {
+	transform: scale(1);
+}
+
+header {
+	text-align: center;
+	height: 50vh;
+	background: url('http://img4.duitang.com/uploads/item/201404/12/20140412144128_JJxAB.jpeg') center no-repeat;
+	background-size: cover;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+h1 {
+	color: white;
+	font-size: 7vw;
+	text-shadow: 4px 4px 0 rgba(0, 0, 0, .5);
+}
+
+nav {
+	background: black;
+	width: 100%;
+	transition: all .5s;
+}
+.fixed-nav nav {
+	position: fixed;
+	top: 0;
+	z-index: 1;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, .2);
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+}
+
+nav ul li {
+	flex: 1;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+nav ul li a {
+	text-decoration: none;
+	padding: 20px;
+	display: inline-block;
+	color: white;
+	text-transform: uppercase;
+}
+
+li.logo {
+	max-width: 0;
+	overflow: hidden;
+	background: white;
+	transition: all .5s;
+	font-weight: 600;
+	font-size: 30px;
+}
+.fixed-nav li.logo {
+	max-width: 500px;
+}
+
+li.logo a {
+	color: black;
+}
