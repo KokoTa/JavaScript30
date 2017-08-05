@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Event Capture, Propagation, Bubbling and Once</title>
+	<style type="text/css">
+		html {
+			box-sizing: border-box;
+		}
+		*, *:before, *:after {
+			box-sizing: inherit;
+		}
+
+		div {
+			width: 100%;
+			padding: 100px;
+		}
+		.one {
+			background: thistle;
+		}
+		.two {
+			background: mistyrose;
+		}
+		.three {
+			background: coral;
+		}
+	</style>
+</head>
+<body class="body">
+	<div class="one">
+		<div class="two">
+			<div class="three">
+			</div>
+		</div>
+	</div>
+	<button>Click Me ^ ^</button>
+
+	<script type="text/javascript">
+		const divs = document.querySelectorAll('div')
+		const button = document.querySelector('button')
+
+		// 显示类名
+		function logText(e) {
+			console.log(this.classList.value)
+			// e.stopPropagation() // 阻止冒泡
+		}
+
+		// 绑定事件，设置捕捉方式和调用次数
+		divs.forEach(div => div.addEventListener('click', logText, {
+			capture: false,
+			once: true
+		}))
+
+		button.addEventListener('click', () => {
+			console.log('Click!')
+		}, {
+			once: true
+		})
+	</script>
+</body>
+</html>

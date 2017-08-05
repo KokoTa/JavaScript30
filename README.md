@@ -30,3 +30,4 @@ Web Bos推出的30天纯JavaScript编程挑战
 - [x] [Follow Along Link Highlighter](https://kokota.github.io/JavaScript30/22.Follow_Along_Link_Highlighter/index.html)
 - [x] [Speech Synthesis](https://kokota.github.io/JavaScript30/23.Speech_Synthesis/index.html)
 - [x] [Sticky Nav](https://kokota.github.io/JavaScript30/24.Sticky_Nav/index.html)
+- [x] [Event Capture, Propagation, Bubbling and Once](https://kokota.github.io/JavaScript30/25.Event/index.html)
