@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Stripe Follow Along Nav</title>
+	<link rel="stylesheet" type="text/css" href="./index.css">
+</head>
+<body>
+	<h2>Cool</h2><h2>Cool</h2><h2>Cool</h2>
+	<nav class="top-cool">
+		<!-- 下拉框背景 -->
+		<div class="dropdownBackground">
+			<span class="arrow"></span>
+		</div>
+		<!-- 导航 -->
+		<ul class="cool">
+			<li>
+				<a href="#">About Me</a>
+				<div class="dropdown dropdown1">
+					<div class="bio">
+						<img src="https://avatars2.githubusercontent.com/u/14892053?v=4&s=460">
+						<p>KokoTa is a student from Shanxi University of Traditional Chinese medicine, he sure does love web development, know about web technologies.</p>
+					</div>
+				</div>
+			</li>
+			<li>
+				<a href="#">Web Bos' Courses</a>
+				<ul class="dropdown dropdown2">
+					<li>
+						<span class="code">RFB</span>
+						<a href="https://ReactForBeginners.com">React For Beginners</a>
+					</li>
+					<li>
+						<span class="code">ES6</span>
+						<a href="https://ES6.io">ES6 For Everyone</a>
+					</li>
+					<li>
+						<span class="code">STPU</span>
+						<a href="https://SublimeTextBook.com">Sublime Text Power User</a>
+					</li>
+					<li>
+						<span class="code">WTF</span>
+						<a href="http://flexbox.io">What The Flexbox?!</a>
+					</li>
+					<li>
+						<span class="code">LRX</span>
+						<a href="http://LearnRedux.com">Learn Redux</a>
+					</li>
+					<li>
+						<span class="code">CLPU</span>
+						<a href="http://CommandLinePowerUser.com">Command Line Power User</a>
+					</li>
+					<li>
+						<span class="code">MMD</span>
+						<a href="http://MasteringMarkdown.com">Mastering Markdown</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">Other link</a>
+				<ul class="dropdown dropdown3">
+					<li>
+						<a href="https://github.com/KokoTa" class="button">Github</a>
+					</li>
+					<li>
+						<a href="https://github.com/KokoTa" class="button">Github</a>
+					</li>
+					<li>
+						<a href="https://github.com/KokoTa" class="button">Github</a>
+					</li>
+					<li>
+						<a href="https://github.com/KokoTa" class="button">Github</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+
+	<script type="text/javascript">
+		const triggers = document.querySelectorAll('.cool > li')
+		const background = document.querySelector('.dropdownBackground')
+		const nav = document.querySelector('.top-cool')
+
+		function handleEnter() {
+			this.classList.add('trigger-enter') // 先显示,但透明度为0
+			background.classList.add('open') // 同时打开背景
+			setTimeout(() => this.classList.contains('trigger-enter') && this.classList.add('trigger-enter-active'), 300); //一段时间后显示后调整透明度
+
+			const dropdown = this.querySelector('.dropdown')
+			const dropdownCoords = dropdown.getBoundingClientRect()
+			const navCoords = nav.getBoundingClientRect()
+			console.log(navCoords)
+			console.log(dropdownCoords)
+
+			const coords = {
+				height: dropdownCoords.height,
+				width: dropdownCoords.width,
+				top: dropdownCoords.top - navCoords.top, // 由于dropdown包含在nav中，且移动时是根据当前位置移动的，所以需要求差才能正确显示
+				left: dropdownCoords.left - navCoords.left
+			}
+
+			background.style.setProperty('width', `${coords.width}px`)
+			background.style.setProperty('height', `${coords.height}px`)
+			background.style.setProperty('transform', `translate(${coords.left}px, ${coords.top}px)`)
+		}
+
+		function handleLeave() {
+			this.classList.remove('trigger-enter', 'trigger-enter-active');
+			background.classList.remove('open');
+		}
+
+		triggers.forEach(trigger => trigger.addEventListener('mouseenter', handleEnter));
+		triggers.forEach(trigger => trigger.addEventListener('mouseleave', handleLeave));
+	</script> 
+</body>
+</html>
