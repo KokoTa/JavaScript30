@@ -33,3 +33,4 @@ Web Bos推出的30天纯JavaScript编程挑战
 - [x] [Event Capture, Propagation, Bubbling and Once](https://kokota.github.io/JavaScript30/25.Event/index.html)
 - [x] [Stripe Follow Along Nav](https://kokota.github.io/JavaScript30/26.Stripe_Follow_Along_Nav/index.html)
 - [x] [Click And Drag](https://kokota.github.io/JavaScript30/27.Click_And_Drag/index.html)
+- [x] [Video Speed Controller](https://kokota.github.io/JavaScript30/28.Video_Speed_Controller/index.html)

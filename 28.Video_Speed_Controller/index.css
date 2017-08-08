@@ -1,0 +1,40 @@
+body {
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+.wrapper {
+	display: flex;
+	min-width: 1400px;
+}
+
+video {
+	box-shadow: 0 0 5px 3px rgba(0, 0, 0, .3);
+}
+
+.speed {
+	background: #eee;
+	width: 80px;
+	margin-left: 10px;
+	border-radius: 10px;
+	box-shadow: 0 0 5px 3px rgba(0, 0, 0, .3);
+	display: flex;
+	align-items: flex-start;
+	overflow: hidden;
+}
+
+.speed-bar {
+	width: 100%;
+	background:linear-gradient(-170deg, blue 0%, red 100%);
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, .3);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 2px;
+	color: white;
+	height: 25%;
+}

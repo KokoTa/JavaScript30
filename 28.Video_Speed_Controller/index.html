@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Video Speed Controller</title>
+	<link rel="stylesheet" type="text/css" href="./index.css">
+</head>
+<body>
+	<h1>视频速度调整，可对比Custom Video Player学习</h1>
+	<div class="wrapper">
+		<video  class="flex" width="1366" height="768" src="http://v6.365yg.com/video/m/2200000000000000000000000000000000011451670000095f58f4f756/?Expires=1502214398&AWSAccessKeyId=qh0h9TdcEMoS2oPj7aKX&Signature=xY7HL02GizanB2aJYGK5elqrlLY%3D" loop controls></video>
+		<div class="speed">
+			<div class="speed-bar">1x</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		const speed = document.querySelector('.speed')
+		const bar = speed.querySelector('.speed-bar')
+		const video = document.querySelector('.flex')
+
+		function handleMove(e) {
+			const y = e.pageY - this.offsetTop // 鼠标到框的距离
+			const percent = y / this.offsetHeight // 距离所占总长度的百分比
+			const min = 0.5
+			const max = 2
+			const height = Math.round(percent * 100) + '%'
+			const playbackRate = percent * (max - min) + min
+			bar.style.height = height
+			bar.innerHTML = playbackRate.toFixed(2) + 'x'
+			video.playbackRate = playbackRate
+		}
+
+		speed.addEventListener('mousemove', handleMove)
+	</script>
+</body>
+</html>
