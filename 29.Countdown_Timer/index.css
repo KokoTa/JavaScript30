@@ -1,0 +1,77 @@
+html {
+	box-sizing: border-box;
+	font-size: 10px;
+	background: linear-gradient(45deg,  #42a5f5 0%,#478ed1 50%,#0d47a1 100%) no-repeat;
+	height: 100%;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+	user-select: none;
+}
+
+body {
+	margin: 0;
+	text-align: center;
+	font-family: 'Inconsolata', monospace;
+}
+
+.timer {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+.timer .control {
+	display: flex;
+}
+.control > * {
+	flex: 1;
+}
+.control from {
+	flex: 1;
+	display: flex;
+}
+.control form input {
+	flex: 1;
+	border: 0;
+	padding: 2rem;
+	width: 100%;
+	font-size: 2rem;
+}
+
+.timer-button {
+	background: none;
+	border: 0;
+	outline: 0;
+	color: white;
+	font-size: 2rem;
+	text-transform: uppercase;
+	background: rgba(0, 0, 0, .3);
+	border: 1px solid rgba(0, 0, 0, .1);
+	padding: 1rem;
+}
+.timer-button:hover,
+.timer-button:active {
+	background: rgba(0, 0, 0, .5);
+}
+
+.timer .display {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	flex: 1;
+}
+
+.display_time_left {
+	font-size: 20rem;
+	color: white;
+	margin: 0;
+	text-shadow: 0 0 10px rgba(0, 0, 0, 1.0)
+}
+.display_time_end {
+	font-size: 4rem;
+	margin: 0;
+	color: white;
+}
