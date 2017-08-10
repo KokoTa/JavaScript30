@@ -35,3 +35,8 @@ Web Bos推出的30天纯JavaScript编程挑战
 - [x] [Click And Drag](https://kokota.github.io/JavaScript30/27.Click_And_Drag/index.html)
 - [x] [Video Speed Controller](https://kokota.github.io/JavaScript30/28.Video_Speed_Controller/index.html)
 - [x] [Countdown Timer](https://kokota.github.io/JavaScript30/29.Countdown_Timer/index.html)
+- [x] [Whack_A_Mole](https://kokota.github.io/JavaScript30/30.Whack_A_Mole/index.html)
+
+就这样，这次练习结束了。
+俗话说得好：“学习就是不停地复习！”
+虽然是练习完了，但是还是要常来看看噢！

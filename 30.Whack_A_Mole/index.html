@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Whack A Mole</title>
+	<link rel="stylesheet" type="text/css" href="./index.css">
+</head>
+<body>
+	<h1>十秒内打到的地鼠数量：<span class="score">0</span></h1>
+	<button class="start">Start!</button>
+
+	<div class="game">
+		<div class="hole hole1">
+			<div class="mole">鼠</div>
+		</div>
+		<div class="hole hole2">
+			<div class="mole">鼠</div>
+		</div>
+		<div class="hole hole3">
+			<div class="mole">鼠</div>
+		</div>
+		<div class="hole hole4">
+			<div class="mole">鼠</div>
+		</div>
+		<div class="hole hole5">
+			<div class="mole">鼠</div>
+		</div>
+		<div class="hole hole6">
+			<div class="mole">鼠</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		const holes = Array.from( document.querySelectorAll('.hole'))
+		const button = document.querySelector('button')
+		const scoreBoard = document.querySelector('.score')
+		const moles = document.querySelectorAll('.mole')
+		let timeUp = false // 时间到
+		let score = 0 // 分数
+		let lastHole // 头正探出来的那只老鼠
+
+		function startGame() {
+			scoreBoard.textContent = 0
+			timeUp = false
+			score = 0
+			peep() // 地鼠出来啦
+			setTimeout(() => timeUp = true, 10000) // 一局十秒
+		}
+
+		 function peep() {
+		 	const time = randomTime(200, 1000)
+		 	const hole = randomHole(holes)
+		 	setTimeout(() => { // 老鼠随机生成
+		 		// console.log(hole.children[0])
+		 		hole.children[0].classList.add('out')
+		 		if(!timeUp) peep()
+		 	}, time)
+		 }
+
+		 function randomTime(min, max) {
+		 	return Math.round(Math.random()*(max-min) + min)
+		 }
+		 function randomHole(holes) {
+		 	const index = Math.floor(Math.random() * holes.length)
+		 	const hole = holes[index]
+		 	if(hole.children[0].classList.contains('out')) {
+		 		console.log(index + '这只老鼠已经出来了！')
+
+		 		var allOut = holes.every((hole) => hole.children[0].classList.contains('out'))
+		 		if(allOut) {
+		 			console.log('所有老鼠都出来啦！')
+		 			return hole
+		 		}
+
+		 		return randomHole(holes)
+		 	}
+	 		return hole
+		 }
+
+		 function boom(e) {
+		 	this.classList.remove('out')
+		 	scoreBoard.textContent = ++score
+		 }
+
+		 button.addEventListener('click', startGame)
+		 moles.forEach(mole => mole.addEventListener('click', boom))
+	</script>
+</body>
+</html>
